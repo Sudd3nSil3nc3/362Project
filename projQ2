@@ -1,0 +1,63 @@
+
+CREATE TABLE user(
+
+'user_acc' int(18) NOT NULL ,
+'password' VARCHAR(255) NOT NULL,
+'email' VARCHAR(255) NOT NULL,
+'gender' ENUM( 'male','female','prefer_not_to_say'),
+'phone_number' VARCHAR(255),
+'birthdate' VARCHAR(255),
+'gender' VARCHAR(255),
+'location' VARCHAR(255),
+
+PRIMARY KEY ('user_acc'),
+
+UNIQUE KEY 'email' ('email'),
+UNIQUE KEY 'username' ('username')
+
+);
+
+
+CREATE TABLE follows(
+
+'user_acc' INT NOT NULL,
+'following_id' INT NOT NULL,
+'follower_id' INT NOT NULL,
+
+PRIMARY KEY ('user_acc', 'following_id'),
+UNIQUE KEY ('following_id', 'user_acc')
+
+FOREIGN KEY ('user_id') REFERENCES Users('user_acc')
+FOREIGN KEY ('following_id') REFERENCES Users('user_acc')
+
+);
+
+CREATE TABLE content(
+
+'content_id' int(18) NOT NULL,
+'user_acc' int(18) NOT NULL
+'upload' DATE,
+'caption' VARCHAR(255),
+'type' ENUM ('photo', 'film'),
+'content_link' VARCHAR(255) NOT NULL,
+
+
+PRIMARY KEY ('content_id'),
+
+FOREIGN KEY ('user_acc') REFERENCES Users('user_acc')
+
+);
+
+CREATE TABLE messages(
+
+'message_id' INT(18) NOT NULL,
+'username_from' INT(18) NOT NULL,
+'username_to' INT(18) NOT NULL,
+'content' text NOT NULL,
+'timestamp' date NOT NULL,
+PRIMARY KEY ('message_id'),
+
+FOREIGN KEY ('username_from') REFERENCES Users('user_acc'),
+FOREIGN KEY ('username_to') REFERENCES Users('user_acc')
+
+);

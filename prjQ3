@@ -1,0 +1,22 @@
+/* Syntax, Question 3 */
+
+/* Create new table */
+
+CREATE table name (
+  column1 datatype,
+  ....
+)
+
+INSERT into name (column1 , ...)
+  values (v1 , ...);
+group by [column1 , ...]
+
+/* Deleting information */
+
+DELETE from name where conditon;
+
+/* Modifying */
+
+UPDATE name
+set column1 = v1, column4, ... = v2, ...
+where condition;
